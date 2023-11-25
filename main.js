@@ -11,32 +11,32 @@ function addNote() {
   task = taskBox.value;
   time = timeBox.value;
 
-  //   if (!task) {
-  //     taskBox.style.backgroundColor = "pink";
-  //     showModal();
-  //     printError(0);
-  //     focusPoint = 0;
-  //     event.preventDefault();
-  //     return;
-  //   }
-  //   if (!time) {
-  //     timeBox.style.backgroundColor = "pink";
-  //     showModal();
-  //     printError(1);
-  //     focusPoint = 1;
-  //     event.preventDefault();
-  //     return;
-  //   }
+    if (!task) {
+      taskBox.style.backgroundColor = "pink";
+      showModal();
+      printError(0);
+      focusPoint = 0;
+      event.preventDefault();
+      return;
+    }
+    if (!time) {
+      timeBox.style.backgroundColor = "pink";
+      showModal();
+      printError(1);
+      focusPoint = 1;
+      event.preventDefault();
+      return;
+    }
 
-  //   const now = Date.now();
-  //   if (new Date(time) < now) {
-  //     timeBox.style.backgroundColor = "pink";
-  //     showModal();
-  //     printError(2);
-  //     focusPoint = 2;
-  //     event.preventDefault();
-  //     return;
-  //   }
+    const now = Date.now();
+    if (new Date(time) < now) {
+      timeBox.style.backgroundColor = "pink";
+      showModal();
+      printError(2);
+      focusPoint = 2;
+      event.preventDefault();
+      return;
+    }
 
   const todo = { task, time };
   toDoList.push(todo);
