@@ -1,0 +1,276 @@
+@keyframes add-note {
+  0% {
+    transform: translateX(-10000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes remove-note {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(-10000px);
+  }
+}
+
+@font-face {
+  font-family: chalk;
+  src: url(assets/fonts/CoalhandLuke\ TRIAL.ttf);
+}
+@font-face {
+  font-family: console;
+  src: url(assets/fonts/SummerPixelWide22Regular-4BoW4.ttf);
+}
+@font-face {
+  font-family: north;
+  src: url(assets/fonts/northampton.regular.ttf);
+}
+@font-face {
+  font-family: pen;
+  src: url(assets/fonts/Free\ Pen.ttf);
+}
+@font-face {
+  font-family: eras;
+  src: url(assets/fonts/EraserDust.ttf);
+}
+@font-face {
+  font-family: tafel;
+  src: url(assets/fonts/Tafelschrift.ttf);
+}
+@font-face {
+  font-family: marker;
+  src: url(assets/fonts/Roughmarker.ttf);
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url(assets/imgs/newbg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#span1 {
+  font-family: chalk;
+  color: whitesmoke;
+  font-size: 12vh;
+  position: fixed;
+  top: 9.5vh;
+  left: 18vh;
+  font-weight: 100;
+  z-index: 1;
+}
+#span2 {
+  font-family: chalk;
+  color: whitesmoke;
+  font-size: 6vh;
+  position: fixed;
+  top: 24vh;
+  left: 18vh;
+  font-weight: 100;
+  z-index: 1;
+}
+#span3 {
+  font-family: eras;
+  color: whitesmoke;
+  font-size: 9vh;
+  position: relative;
+  left: 1vh;
+  top: 0.5vh;
+  font-weight: 100;
+  z-index: 1;
+}
+#span4 {
+  font-family: eras;
+  color: whitesmoke;
+  font-size: 4vh;
+  position: relative;
+  left: 0.5vh;
+  top: 0vh;
+  font-weight: 100;
+  z-index: 1;
+}
+#span5 {
+  font-family: eras;
+  color: whitesmoke;
+  font-size: 4vh;
+  position: relative;
+  left: 0.5vh;
+  top: 0.1vh;
+  font-weight: 100;
+  z-index: 1;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto;
+  position: absolute;
+  top: 31vh;
+  left: 8vh;
+  overflow: hidden;
+}
+
+.note {
+  background-image: url(assets/imgs/0.png);
+  /* border: 1px solid; */
+  width: 290px;
+  height: 300px;
+  display: inline-block;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* note text */
+.note > div:first-child {
+  font-family: north;
+  font-weight: 1000;
+  font-size: large;
+  overflow: auto;
+  margin: 85px 0px 0px 60px;
+  width: 60%;
+  height: 40%;
+}
+
+/* date */
+.note > div:nth-child(2) {
+  position: absolute;
+  width: fit-content;
+  rotate: 45deg;
+  bottom: 46px;
+  left: 14px;
+  font-family: marker;
+  font-size: 2.5vh;
+  font-weight: bolder;
+}
+/* time */
+.note > div:nth-child(3) {
+  position: absolute;
+  width: fit-content;
+  rotate: -37deg;
+  bottom: 61px;
+  left: 200px;
+  font-family: marker;
+  font-size: 4vh;
+  font-weight: bolder;
+  text-align: center;
+}
+
+/* note delete button */
+.note > button {
+  position: absolute;
+  top: 30px;
+  left: 40px;
+  border: none;
+  background-color: transparent;
+  rotate: 10deg;
+  cursor: pointer;
+  transition: all 250ms;
+}
+button > img {
+  width: 25px;
+}
+
+footer > img {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  pointer-events: none;
+}
+#titlesContainer > img {
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+}
+
+form {
+  text-align: center;
+  width: fit-content;
+  position: fixed;
+  top: 10vh;
+  right: 15vh;
+  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  z-index: 1;
+}
+form > * {
+    margin: 0px;
+}
+
+.form-floating {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+}
+textarea {
+  resize: none;
+}
+
+input[type="datetime-local"] {
+  border-radius: 10px;
+  border: 1px solid gray;
+  grid-column: 1 / span 2;
+  grid-row: 2;
+}
+#addButton {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+button[type="reset"] {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#modalContainer {
+  background-color: #bff8e0;
+  width: 400px;
+  height: 200px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  border-radius: 10px;
+  border: 3px solid rgb(0, 100, 42);
+  box-shadow: 0px 0px 19px;
+  transition: 100ms all;
+}
+
+#errorContainer {
+  position: relative;
+  text-align: center;
+  top: 35%;
+  font-size: x-large;
+}
+
+#modalButton {
+  position: relative;
+  transform: translate(-50%, -50%);
+  top: 60%;
+  left: 50%;
+  background-color: rgb(197, 255, 252);
+  border-radius: 10px;
+  border: 3px solid rgb(0, 100, 62);
+}
+
+#topperImg{
+    pointer-events: none;
+}
