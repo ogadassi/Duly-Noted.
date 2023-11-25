@@ -1,4 +1,5 @@
 let toDoList = [];
+let focusPoint;
 
 function addNote() {
   const taskBox = document.getElementById("taskBox");
@@ -10,29 +11,32 @@ function addNote() {
   task = taskBox.value;
   time = timeBox.value;
 
-  if (!task) {
-    taskBox.style.backgroundColor = "pink";
-    showModal("Please enter your note.");
-    taskBox.focus();
-    event.preventDefault();
-    return;
-  }
-  if (!time) {
-    timeBox.style.backgroundColor = "pink";
-    showModal("Please provide a due date.");
-    timeBox.focus();
-    event.preventDefault();
-    return;
-  }
+  //   if (!task) {
+  //     taskBox.style.backgroundColor = "pink";
+  //     showModal();
+  //     printError(0);
+  //     focusPoint = 0;
+  //     event.preventDefault();
+  //     return;
+  //   }
+  //   if (!time) {
+  //     timeBox.style.backgroundColor = "pink";
+  //     showModal();
+  //     printError(1);
+  //     focusPoint = 1;
+  //     event.preventDefault();
+  //     return;
+  //   }
 
-  const now = Date.now();
-  if (new Date(time) < now) {
-    timeBox.style.backgroundColor = "pink";
-    showModal("Please provide a valid (future) due date.");
-    timeBox.focus();
-    event.preventDefault();
-    return;
-  }
+  //   const now = Date.now();
+  //   if (new Date(time) < now) {
+  //     timeBox.style.backgroundColor = "pink";
+  //     showModal();
+  //     printError(2);
+  //     focusPoint = 2;
+  //     event.preventDefault();
+  //     return;
+  //   }
 
   const todo = { task, time };
   toDoList.push(todo);
@@ -108,19 +112,27 @@ function animateLast() {
 function getRandomNumInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-function showModal(errorMsg) {
+function showModal() {
   const modalContainer = document.getElementById("modalContainer");
   modalContainer.classList.remove("hidden");
   const errorContainer = document.getElementById("errorContainer");
   errorContainer.classList.remove("hidden");
   const modalButton = document.getElementById("modalButton");
   modalButton.classList.remove("hidden");
-
-  printError(errorMsg);
 }
-function printError(errorMsg) {
+function printError(errorIndex) {
   const errorContainer = document.getElementById("errorContainer");
-  errorContainer.innerText = errorMsg;
+  switch (errorIndex) {
+    case 0:
+      errorContainer.innerText = "Please enter your note.";
+      break;
+    case 1:
+      errorContainer.innerText = "Please provide a due date.";
+      break;
+    case 2:
+      errorContainer.innerText = "Please provide a valid (future) due date.";
+      break;
+  }
 }
 function closeModal() {
   const modalContainer = document.getElementById("modalContainer");
@@ -129,4 +141,19 @@ function closeModal() {
   errorContainer.classList.add("hidden");
   const modalButton = document.getElementById("modalButton");
   modalButton.classList.add("hidden");
+
+  const taskBox = document.getElementById("taskBox");
+  const timeBox = document.getElementById("timeBox");
+
+  switch (focusPoint) {
+    case 0:
+      taskBox.focus();
+      break;
+    case 1:
+      timeBox.focus();
+      break;
+    case 2:
+      timeBox.focus();
+      break;
+  }
 }
